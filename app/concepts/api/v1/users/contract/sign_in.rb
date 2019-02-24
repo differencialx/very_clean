@@ -1,9 +1,9 @@
 module Api
   module V1
     module Users::Contract
-      class SignIn < BaseForm
-        EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+      EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
+      class SignIn < BaseForm
         with_options virtual: true do
           property :email
           property :password

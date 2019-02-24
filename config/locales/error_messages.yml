@@ -1,0 +1,5 @@
+en:
+  errors:
+    rules:
+      users:
+        email_exists?: 'user with such email already exists'

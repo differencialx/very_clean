@@ -7,8 +7,8 @@ module Api
         step :fetch_user!
         step :authenticate_user!
         fail :set_auth_errors!
-        step :prepare_token_data!
-        step :generate_token!
+        step Users::Operation::PrepareTokenData
+        step Users::Operation::GenerateToken
 
         def fetch_user!(options, params:, **)
           options[:model] = User.find_by(email: params[:email])
@@ -20,15 +20,6 @@ module Api
 
         def set_auth_errors!(options, params:, **)
           options['contract.default'].errors.add(:user, 'email or password are invalid')
-        end
-
-        def prepare_token_data!(options, params:, **)
-          options[:token_data] = { payload: { user_id: options[:model].id } }
-        end
-  
-        def generate_token!(options, params:, **)
-          result = JsonWebToken::Operation::Encode.(params: options[:token_data])
-          options[:json_web_token] = result[:json_web_token]
         end
       end
     end
