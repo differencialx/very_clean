@@ -18,13 +18,13 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
     before do
       user
+      request
     end
 
     context 'email does not exist' do
       let(:params_email) { '33paski@lol4to.com' }
 
       it do
-        request
         expect_status 422
         expect_json('errors.0.title', 'User')
         expect_json('errors.0.detail', 'email or password are invalid')
@@ -35,7 +35,6 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       let(:params_password) { '12345678' }
 
       it do
-        request
         expect_status 422
         expect_json('errors.0.title', 'User')
         expect_json('errors.0.detail', 'email or password are invalid')
@@ -44,7 +43,6 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
     context 'valid credentials' do
       it do
-        request
         expect_status 200
         expect(response.headers['Authorization']).to be_present
       end

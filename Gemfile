@@ -18,11 +18,11 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'jwt'
 
-# gem 'trailblazer-endpoint', github: 'trailblazer/trailblazer-endpoint'
 gem 'trailblazer-rails'
 gem 'reform-rails'
 gem 'dry-validation', '0.11.1'
 gem 'jsonapi-rails'
+gem 'simple_endpoint', github: 'differencialx/simple_endpoint', :branch => 'master'
 
 group :development, :test do
   gem 'pry-rails'
