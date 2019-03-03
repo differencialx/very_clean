@@ -1,7 +1,7 @@
 module Api
   module V1
     module Users::Contract
-      class SignUp < SignIn
+      class SignUp < BaseForm
         property :email
         property :password
         property :password_confirmation
