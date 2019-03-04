@@ -8,7 +8,8 @@ module Api
       def default_handler
         -> (kase, result) do
           case kase
-          when :success then head :ok
+          when :success
+            render jsonapi: result[:model], **result[:renderer_options], status: :created
           when :invalid
             render json: json_api_errors(result['contract.default'].errors.messages), 
             status: :unprocessable_entity

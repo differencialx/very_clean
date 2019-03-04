@@ -8,6 +8,7 @@ module Api
         step Contract::Persist()
         step Users::Operation::PrepareTokenData
         step Users::Operation::GenerateToken
+        step Users::Operation::RendererOptions
       end
     end
   end

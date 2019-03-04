@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/differencialx/simple_endpoint.git
-  revision: d92f94e5c3a98600fa34d4a5fcafc526d2e69a95
+  revision: d71c65df818e266fae21a6144ab24af64c9e9925
   branch: master
   specs:
-    simple_endpoint (0.1.0)
+    simple_endpoint (0.1.1)
 
 GEM
   remote: https://rubygems.org/

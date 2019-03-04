@@ -43,8 +43,13 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
     context 'valid credentials' do
       it do
-        expect_status 200
+        expect_status 201
         expect(response.headers['Authorization']).to be_present
+        expect_json('data.id', user.id.to_s)
+        expect_json('data.type', 'users')
+        expect_json('data.attributes.email', user.email)
+        expect_json('data.attributes.first_name', user.first_name)
+        expect_json('data.attributes.last_name', user.last_name)
       end
     end
   end
@@ -85,8 +90,14 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     context 'valid credentials' do
       it do
         expect { request }.to change { User.count }.by(1)
-        expect_status 200
+        expect_status 201
         expect(response.headers['Authorization']).to be_present
+        user = User.last
+        expect_json('data.id', user.id.to_s)
+        expect_json('data.type', 'users')
+        expect_json('data.attributes.email', user.email)
+        expect_json('data.attributes.first_name', user.first_name)
+        expect_json('data.attributes.last_name', user.last_name)
       end
     end
   end
