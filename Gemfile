@@ -22,7 +22,7 @@ gem 'trailblazer-rails'
 gem 'reform-rails'
 gem 'dry-validation', '0.11.1'
 gem 'jsonapi-rails'
-gem 'simple_endpoint', github: 'differencialx/simple_endpoint', :branch => 'master'
+gem 'simple_endpoint', '~> 0.1.2'
 
 group :development, :test do
   gem 'pry-rails'
