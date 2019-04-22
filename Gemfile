@@ -24,6 +24,8 @@ gem 'dry-validation', '0.11.1'
 gem 'jsonapi-rails'
 gem 'simple_endpoint', '~> 0.1.2'
 
+gem 'sidekiq'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'ffaker'
