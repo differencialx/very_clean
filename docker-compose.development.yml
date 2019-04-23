@@ -46,7 +46,6 @@ services: # Объявляем сервисы(контейнеры) которы
     stdin_open: true # Открываем доступ для деббагинга контейнера
     environment:
       RAILS_ENV: development
-      RAILS_MASTER_KEY: 'c1f68fcacc83248aac3a121002f9e043'
       DB_HOST: db
       DB_PORT: 5432
       DB_NAME: very_clean_development
