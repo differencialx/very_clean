@@ -46,11 +46,12 @@ services: # Объявляем сервисы(контейнеры) которы
     stdin_open: true # Открываем доступ для деббагинга контейнера
     environment:
       RAILS_ENV: development
+      RAILS_MASTER_KEY: c1f68fcacc83248aac3a121002f9e043
       DB_HOST: db
-      DB_PORT: 5432
-      DB_NAME: very_clean_development
-      DB_USERNAME: postgres
-      DB_PASSWORD: postgres
+      # DB_PORT: 5432
+      # DB_NAME: very_clean_development
+      # DB_USERNAME: postgres
+      # DB_PASSWORD: postgres
       REDIS_DB: "redis://in_memory_store:6379"
       SECRET_KEY_BASE: STUB
       DEVISE_SECRET_KEY: STUB
