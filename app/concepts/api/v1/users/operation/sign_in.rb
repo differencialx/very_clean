@@ -10,15 +10,15 @@ module Api
         step Users::Operation::PrepareTokenData
         step Users::Operation::GenerateToken
         step Users::Operation::RendererOptions
-    
+
         def fetch_user!(options, params:, **)
           options[:model] = User.find_by(email: params[:email])
         end
-    
+
         def authenticate_user!(options, params:, **)
           options[:model].authenticate(params[:password])
         end
-    
+
         def set_auth_errors!(options, params:, **)
           options['contract.default'].errors.add(:user, 'email or password are invalid')
         end
