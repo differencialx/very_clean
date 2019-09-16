@@ -16,7 +16,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.1.0', require: false
 
-gem 'jwt'
 
 gem 'trailblazer-rails'
 gem 'reform-rails'
@@ -25,6 +24,9 @@ gem 'jsonapi-rails'
 gem 'simple_endpoint', '~> 0.1.2'
 
 gem 'sidekiq'
+
+gem 'jwt_sessions'
+# gem 'jwt'
 
 group :development, :test do
   gem 'pry-rails'
