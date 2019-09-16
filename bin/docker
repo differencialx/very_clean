@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+
+system("docker-compose -p very-clean-dev -f docker-compose.development.yml exec server_app #{ARGV.join(' ')}")
