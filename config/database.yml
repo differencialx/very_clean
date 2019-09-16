@@ -2,7 +2,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   host: "<%= ENV['DB_HOST'] || Rails.application.credentials.development[:database_host] %>"
-  post: "<%= ENV['DB_PORT'] || Rails.application.credentials.development[:database_port] %>"
+  port: "<%= ENV['DB_PORT'] || Rails.application.credentials.development[:database_port] %>"
   username: "<%= ENV['DB_USERNAME'] || Rails.application.credentials.development[:database_username] %>"
   password: "<%= ENV['DB_PASSWORD'] || Rails.application.credentials.development[:database_password] %>"
   # For details on connection pooling, see Rails configuration guide
