@@ -70,12 +70,12 @@ RSpec.describe Api::V1::Users::Operation::SignIn do
   describe 'success' do
     let(:user) { create(:user, email: email, password: password) }
 
-    it 'returns json_web_token' do
+    it 'returns jwt session login object' do
       user
       expect(subject).to be_success
-      json_web_token = subject[:json_web_token]
-      decoded_token = JWT.decode(json_web_token, Rails.application.credentials[:secret_key_base], true, algorithm: 'HS256').first
-      expect(decoded_token['user_id']).to eq user.id
+      jwt_session = subject[:jwt_session]
+      decoded_token = JWT.decode(jwt_session[:access], Rails.application.credentials[:secret_key_base], true, algorithm: 'HS256').first
+      expect(decoded_token['payload']['user_id']).to eq user.id
     end
   end
 end

@@ -20,6 +20,7 @@ module Api
         end
 
         def set_auth_errors!(options, params:, **)
+          options['contract.status'] = :unauthorized
           options['contract.default'].errors.add(:user, 'email or password are invalid')
         end
       end

@@ -3,8 +3,8 @@ module Api
     module Users::Operation
       class GenerateToken < BaseCallable
         def self.call(options, **)
-          result = JsonWebToken::Operation::Encode.(params: options[:token_data])
-          options[:json_web_token] = result[:json_web_token]
+          result = JWTSessions::Session.new(payload: options[:token_data])
+          options[:jwt_session] = result.login
         end
       end
     end

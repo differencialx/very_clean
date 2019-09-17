@@ -26,6 +26,9 @@ gem 'simple_endpoint', '~> 0.1.2'
 gem 'sidekiq'
 
 gem 'jwt_sessions'
+gem 'redis'
+gem 'rack-cors'
+
 # gem 'jwt'
 
 group :development, :test do

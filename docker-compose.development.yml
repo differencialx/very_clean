@@ -40,7 +40,7 @@ services:
     stdin_open: true
     environment:
       RAILS_ENV: development
-      RAILS_MASTER_KEY: c1f68fcacc83248aac3a121002f9e043
+      RAILS_MASTER_KEY: 00d729b4edfbb68fdc8975a3a5c7a109
       DB_HOST: db
       DB_PORT: 5432
       DB_NAME: very_clean_development
