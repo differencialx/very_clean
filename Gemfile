@@ -33,6 +33,7 @@ gem 'rack-cors'
 
 group :development, :test do
   gem 'pry-rails'
+  gem 'pry-byebug'
   gem 'ffaker'
   gem 'rspec-rails', '~> 3.8.1', require: false
   gem 'factory_bot_rails'

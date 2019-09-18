@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Api::V1::Users::Operation::SignUp do
   subject { described_class.(params: params) }
 
@@ -75,7 +73,7 @@ RSpec.describe Api::V1::Users::Operation::SignUp do
       user = subject[:model]
       jwt_session = subject[:jwt_session]
       decoded_token = JWT.decode(jwt_session[:access], Rails.application.credentials[:secret_key_base], true, algorithm: 'HS256').first
-      expect(decoded_token['payload']['user_id']).to eq user.id
+      expect(decoded_token['user_id']).to eq user.id
     end
   end
 end
