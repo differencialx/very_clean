@@ -15,7 +15,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.1.0', require: false
-
+gem "nokogiri", ">= 1.10.4"
 
 gem 'trailblazer-rails'
 gem 'reform-rails'
