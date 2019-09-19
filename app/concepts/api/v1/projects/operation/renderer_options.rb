@@ -5,8 +5,10 @@ module Api
         def self.call(options, **)
           options[:renderer_options] = {
             class: {
-              Project: Api::V1::Projects::Representer::Base
-            }
+              Project: Api::V1::Projects::Representer::Base,
+              User: Api::V1::Users::Representer::Authentication
+            },
+            include: [:user]
           }
         end
       end

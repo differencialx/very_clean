@@ -31,6 +31,8 @@ gem 'rack-cors'
 
 # gem 'jwt'
 
+gem "pundit"
+
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'

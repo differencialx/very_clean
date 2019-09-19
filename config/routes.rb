@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post '/sign_in', to: 'users#sign_in'
       post '/sign_up', to: 'users#sign_up'
-      resources :projects, only: %i[index create update delete] do
+      resources :projects, only: %i[index create update destroy] do
       end
     end
   end
