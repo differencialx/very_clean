@@ -26,7 +26,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
         make_request
         expect_status(200)
         expect(json_body[:user]).to eq user.email
-        expect(cookies[:jwt]).to be_present
+        expect(cookies[JWTSessions.access_cookie]).to be_present
       end
     end
   end
@@ -49,7 +49,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       expect { make_request }.to change(User, :count).from(0).to(1)
       expect_status(200)
       expect(json_body[:user]).to eq email
-      expect(cookies[:jwt]).to be_present
+      expect(cookies[JWTSessions.access_cookie]).to be_present
     end
 
     context 'wrong confirmation' do

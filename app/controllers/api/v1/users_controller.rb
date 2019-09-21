@@ -17,13 +17,15 @@ module Api
 
       def different_handler
         {
+          created: ->(result) { render json: { user: result[:model].email }, status: :ok },
           success: ->(result) { render json: { user: result[:model].email }, status: :ok }
         }
       end
 
       def user_response_handler
         {
-          success: ->(result) { cookies.signed[:jwt] = { value: result[:jwt_session], httponly: true } }
+          created: ->(result) { cookies[JWTSessions.access_cookie] = { value: result[:jwt_session], httponly: true } },
+          success: ->(result) { cookies[JWTSessions.access_cookie] = { value: result[:jwt_session], httponly: true } }
         }
       end
     end
