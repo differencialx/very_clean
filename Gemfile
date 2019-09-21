@@ -31,7 +31,8 @@ gem 'rack-cors'
 
 # gem 'jwt'
 
-gem "pundit"
+gem 'pundit'
+gem 'acts_as_list'
 
 group :development, :test do
   gem 'pry-rails'

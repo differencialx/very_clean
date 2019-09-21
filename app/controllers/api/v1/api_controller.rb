@@ -26,9 +26,12 @@ module Api
           created:   -> (result) { result.success? && result["model.action"] == :new },
           success:   -> (result) { result.success? },
           forbidden: -> (result) { result.failure? && result["result.policy.default"] && result["result.policy.default"].failure? },
-          not_found: -> (result) { result.failure? && result['model'].blank? },
+          not_found: -> (result) { result.failure? && result[:model].blank? },
           unauthorized: ->(result) { result.failure? && result['contract.status'] == :unauthorized },
-          invalid:   -> (result) { result.failure? }
+          invalid: -> (result) {
+            binding.pry
+            result.failure?
+         }
         }
       end
 

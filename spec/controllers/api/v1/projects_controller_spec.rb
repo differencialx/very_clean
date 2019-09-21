@@ -1,7 +1,8 @@
 RSpec.describe Api::V1::ProjectsController, type: :controller do
+  let(:name) { FFaker::Lorem.word }
+
   describe 'POST #create' do
     subject(:make_request) { post :create, params: params }
-    let(:name) { FFaker::Lorem.word }
     let(:params) { { name: name } }
 
     it 'returns unauthorized' do
@@ -26,7 +27,6 @@ RSpec.describe Api::V1::ProjectsController, type: :controller do
 
   describe 'PUT #update' do
     subject(:make_request) { put :update, params: params }
-    let(:name) { FFaker::Lorem.word }
     let(:user) { create(:user) }
     let(:project) { create(:project, user: user) }
     let(:project_id) { project.id }
