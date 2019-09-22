@@ -20,7 +20,7 @@ RSpec.describe Api::V1::TasksController, type: :controller do
 
       it 'creates new task' do
         make_request
-        expect_status(201)
+        expect_status(200)
         expect_json('data.id', Task.last.id.to_s)
         expect_json('data.attributes.name', name)
         expect_json('data.attributes.deadline_at', nil)

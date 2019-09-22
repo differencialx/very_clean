@@ -22,13 +22,13 @@ module Api
 
       def default_cases
         {
-          destroyed: -> (result) { result.success? && result[:model].respond_to?(:destroyed?) && result[:model].destroyed? },
-          created:   -> (result) { result.success? && result["model.action"] == :new },
-          success:   -> (result) { result.success? },
-          forbidden: -> (result) { result.failure? && result["result.policy.default"] && result["result.policy.default"].failure? },
+          destroyed: ->(result) { result.success? && result[:model].respond_to?(:destroyed?) && result[:model].destroyed? },
+          created: ->(result) { result.success? && result['model.action'] == :new },
+          success: ->(result) { result.success? },
+          forbidden: ->(result) { result.failure? && result['result.policy.default'] && result['result.policy.default'].failure? },
           unauthorized: ->(result) { result.failure? && result['contract.status'] == :unauthorized },
-          not_found: -> (result) { result.failure? && result[:model].blank? },
-          invalid: -> (result) { result.failure? }
+          not_found: ->(result) { result.failure? && result[:model].blank? },
+          invalid: ->(result) { result.failure? }
         }
       end
 

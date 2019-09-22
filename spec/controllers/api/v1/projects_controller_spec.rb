@@ -17,7 +17,7 @@ RSpec.describe Api::V1::ProjectsController, type: :controller do
 
       it 'creates new project' do
         make_request
-        expect_status(201)
+        expect_status(200)
         expect_json('data.id', Project.last.id.to_s)
         expect_json('data.attributes.name', name)
         expect_json('data.type', 'projects')
