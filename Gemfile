@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '2.6.3'
 
-gem 'rails', '~> 5.2.2'
+gem 'rails', '~> 6.0.0'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 6.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'rake', '< 11.0'
 
@@ -14,7 +14,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
-gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootsnap', '>= 1.4.4', require: false
 gem "nokogiri", ">= 1.10.4"
 
 gem 'trailblazer-rails'
@@ -33,6 +33,8 @@ gem 'rack-cors'
 
 gem 'pundit'
 gem 'acts_as_list'
+
+gem 'webpacker'
 
 group :development, :test do
   gem 'pry-rails'
