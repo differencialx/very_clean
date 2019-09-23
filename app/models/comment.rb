@@ -1,7 +1,7 @@
 class Comment < ApplicationRecord
-  has_one_attached :image
+  has_one_attached :attachment
 
   belongs_to :task
 
-  validates :message, presence: true
+  validates :text, presence: true
 end

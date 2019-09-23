@@ -36,6 +36,8 @@ gem 'acts_as_list'
 
 gem 'webpacker'
 
+gem "aws-sdk-s3", require: false
+
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'

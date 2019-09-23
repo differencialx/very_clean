@@ -37,8 +37,11 @@ ActiveRecord::Schema.define(version: 2019_09_21_212201) do
   end
 
   create_table "comments", force: :cascade do |t|
+    t.text "text"
+    t.bigint "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_comments_on_task_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -71,5 +74,6 @@ ActiveRecord::Schema.define(version: 2019_09_21_212201) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "tasks"
   add_foreign_key "projects", "users"
 end

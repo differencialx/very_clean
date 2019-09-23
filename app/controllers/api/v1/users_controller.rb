@@ -17,16 +17,25 @@ module Api
 
       def different_handler
         {
-          created: ->(result) { render json: { user: result[:model].email }, status: :ok },
-          success: ->(result) { render json: { user: result[:model].email }, status: :ok }
+          created: ->(result) { render_success(result) },
+          success: ->(result) { render_success(result) }
         }
       end
 
       def user_response_handler
         {
-          created: ->(result) { cookies[JWTSessions.access_cookie] = { value: result[:jwt_session], httponly: true } },
-          success: ->(result) { cookies[JWTSessions.access_cookie] = { value: result[:jwt_session], httponly: true } }
+          created: ->(result) { set_tokens(result) },
+          success: ->(result) { set_tokens(result) }
         }
+      end
+
+      def set_tokens(result)
+        cookies[JWTSessions.access_cookie] = { value: result[:jwt_session][:access], httponly: true }
+        response.set_header(JWTSessions.csrf_header, result[:jwt_session][:csrf])
+      end
+
+      def render_success(result)
+        render json: { user: result[:model].email }, status: :ok
       end
     end
   end

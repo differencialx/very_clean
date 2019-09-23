@@ -12,6 +12,9 @@ Rails.application.routes.draw do
           end
         end
       end
+      resources :tasks, only: [] do
+        resources :comments, only: %i[create destroy], shallow: true
+      end
     end
   end
 end
