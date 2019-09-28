@@ -1,0 +1,57 @@
+.project-task,
+.project-task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 $project-indent-right 0 $project-indent-left;
+  border-bottom: 1px solid $base-el-border-color;
+  min-height: 50px;
+}
+
+.project-task {
+  &:hover {
+    background: #e1f5ff;
+    .project-task-actions {
+      transition: opacity 0.15s;
+      opacity: 1;
+    }
+  }
+}
+
+.project-task-item {
+  width: 100%;
+  border-bottom: 0;
+  padding: 0;
+}
+.project-task-actions {
+  opacity: 0;
+  .mb-5 {
+    padding: 0 3px;
+  }
+}
+.project-task-edit-btn {
+  padding: 10px $project-indent-right 5px $project-indent-left;
+}
+.project-task-edit-field {
+  margin-bottom: 0;
+  .form-control {
+    border-radius: 0;
+    padding: 10px $project-indent-right 10px $project-indent-left;
+    min-height: 50px;
+    border: none;
+    box-shadow: none;
+  }
+}
+.project-task-edit-form {
+  width: 100%;
+}
+
+.project-task-done {
+  text-decoration: line-through;
+}
+
+.project-task-priority {
+  display: flex;
+  flex-flow: column;
+  margin-right: 10px;  
+}
