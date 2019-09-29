@@ -33,8 +33,8 @@ const TaskItem = ({ onMouseLeaveHandler,
           <span onClick={moveTaskHigherHandler}><Glyphicon glyph="menu-up" /></span>
           <span onClick={moveTaskLowerHandler}><Glyphicon glyph="menu-down" /></span>
         </div>
-        <CheckboxField value={task.complete}
-                       title={task.title}
+        <CheckboxField value={task.completed}
+                       title={task.name}
                        className="flex-grow mb-0"
                        titleClass={taskTitleClass}
                        extraInfo={task.deadline_at}
@@ -56,7 +56,7 @@ const TaskItem = ({ onMouseLeaveHandler,
 
     { isEditTaskFormVisible &&
       <Formik
-        initialValues={{ taskTitle: task.title }}
+        initialValues={{ taskTitle: task.name }}
         validationSchema={TaskSchema}
         onSubmit={(values, actions) => {
           onSubmitHandler(values, actions)

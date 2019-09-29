@@ -8,8 +8,8 @@ class TaskItem extends Component {
   state = {
     isEditTaskFormVisible: false,
     isDatePickerVisible: false,
-    complete: this.props.task.title,
-    taskTitleClass: this.props.task.complete === true ? 'project-task-done' : ''
+    complete: this.props.task.completed,
+    taskTitleClass: this.props.task.completed === true ? 'project-task-done' : ''
   }
 
   handleDelete = () => {
@@ -33,7 +33,8 @@ class TaskItem extends Component {
   }
 
   handleMarkTask = (evt) => {
-    this.props.updateTask(this.props.task.id, { complete: evt.target.checked })
+    console.log()
+    this.props.updateTask(this.props.task.id, { completed: evt.target.checked })
     this.setState({ taskTitleClass: this.state.taskTitleClass == '' ? 'project-task-done' : '' })
   }
 
@@ -43,7 +44,7 @@ class TaskItem extends Component {
   }
 
   handleOnSubmit = (values, { resetForm }) => {
-    this.props.updateTask(this.props.task.id, { title: values.taskTitle })
+    this.props.updateTask(this.props.task.id, { name: values.taskTitle })
     resetForm({ taskTitle: values.taskTitle })
     this.hideTaskEditForm()
   }
@@ -70,7 +71,7 @@ class TaskItem extends Component {
       handleDatepickerOnChange,
       state: {
         taskTitleClass,
-        compelte,
+        complete,
         isEditTaskFormVisible,
         isDatePickerVisible
       },
@@ -85,7 +86,7 @@ class TaskItem extends Component {
         moveTaskLowerHandler={moveTaskLowerHandler}
         onMouseLeaveHandler={handleMouseLeave}
         taskTitleClass={taskTitleClass}
-        compelteValue={compelte}
+        compelteValue={complete}
         showTaskEditForm={showTaskEditForm}
         hideTaskEditForm={hideTaskEditForm}
         onSubmitHandler={handleOnSubmit}

@@ -1,8 +1,9 @@
 /* eslint-env node */
 
+require('webpack-icons-installer/bootstrap')
 import React from 'react'
 import { render } from 'react-dom'
-import Main from './Main.jsx'
+import Main from './Main'
 import SignUp from './containers/SignUp'
 import SignIn from './containers/SignIn'
 import PrivateRoute from './containers/PrivateRoute'

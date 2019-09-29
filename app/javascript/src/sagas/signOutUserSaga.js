@@ -3,7 +3,7 @@ import * as TYPES from '../constants/types'
 
 export function* signOutUser() {
   try {
-    yield localStorage.clear()
+    yield localStorage.remove('csrf_token')
     yield put({ type: TYPES.SIGN_OUT_USER + TYPES.SUCCESS })
   } catch (error) {
     console.log(error)

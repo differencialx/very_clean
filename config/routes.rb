@@ -19,4 +19,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get '/sign_in', to: 'main#index'
+  get '/sign_up', to: 'main#index'
 end

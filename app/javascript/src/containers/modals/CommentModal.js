@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import * as commentActions from '../../actions/actions'
 import CommentModalComponent from '../../components/modals/CommentModal'
 import CommentItem from '../../containers/comments/CommentItem'
-import { pick, values, map } from 'lodash'
+import { pick, values, map, isUndefined } from 'lodash'
 
 class CommentModal extends Component {
   state = {
@@ -24,8 +24,12 @@ class CommentModal extends Component {
 
   handleCreateComment = (values, { resetForm }) => {
     const formData = new FormData()
-    formData.append('data[attributes][attachment]', values.file)
-    formData.append('data[attributes][text]', values.commentText)
+    const file = values.file
+    let file_to_send = ''
+    if (!isUndefined(file))
+      file_to_send = file
+    formData.append('attachment', file_to_send)
+    formData.append('text', values.commentText)
     this.props.createComment(this.props.task.id, formData)
     document.getElementById("comment_file").value = "";
     resetForm({ commentText: '' })

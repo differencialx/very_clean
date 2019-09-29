@@ -14,7 +14,7 @@ class TaskItemCreateForm extends Component {
   }
 
   handleSubmit = (values, { resetForm }) => {
-    this.props.createTask(this.props.projectId, {title: values.taskTitle})
+    this.props.createTask(this.props.projectId, {name: values.taskTitle})
     resetForm()
     this.handleReset()
   }

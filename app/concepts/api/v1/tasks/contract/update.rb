@@ -8,8 +8,8 @@ module Api
 
         validation do
           optional(:name).filled
-          optional(:deadline_at).filled
-          optional(:completed).filled
+          optional(:deadline_at)
+          optional(:completed)
         end
       end
     end

@@ -9,7 +9,7 @@ export function* signUpUser(action) {
       password: action.password,
       password_confirmation: action.passwordConfirmation
     })
-    yield localStorage.setItem('jwt', response.data.jwt)
+    yield localStorage.setItem('csrf_token', response.headers['x-csrf-token'])
     yield put({ type: TYPES.SIGN_UP_USER + TYPES.SUCCESS })
     yield action.history.push('/')
   } catch (error) {

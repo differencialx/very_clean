@@ -6,12 +6,12 @@ export const getAuthorizedInstance = () => {
       'Content-Type': 'application/json',
     }
   })
-  authorizedInstance.defaults.headers.common['Authorization'] = localStorage.jwt
+  authorizedInstance.defaults.headers.common['X-CSRF-Token'] = localStorage.csrf_token
   return authorizedInstance
 }
 
 export const getAuthorizedInstanceFormData = () => {
   const authorizedInstance = axios.create()
-  authorizedInstance.defaults.headers.common['Authorization'] = localStorage.jwt
+  authorizedInstance.defaults.headers.common['X-CSRF-Token'] = localStorage.csrf_token
   return authorizedInstance
 }

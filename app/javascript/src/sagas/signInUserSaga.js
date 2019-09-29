@@ -8,7 +8,7 @@ export function* signInUser(action) {
       email: action.login,
       password: action.password
     })
-    yield localStorage.setItem('jwt', response.data.jwt)
+    yield localStorage.setItem('csrf_token', response.headers['x-csrf-token'])
     yield put({ type: TYPES.SIGN_IN_USER + TYPES.SUCCESS })
     yield action.history.push('/')
   } catch (error) {

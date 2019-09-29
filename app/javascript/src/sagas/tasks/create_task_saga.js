@@ -6,11 +6,7 @@ import { handleRequstError } from '../../handlers/errorHandler'
 
 export function* createTask(action) {
   try {
-    const response = yield authorizedInstance().post(`/api/v1/projects/${action.projectId}/tasks`, {
-      data: {
-        attributes: action.data
-      }
-    })
+    const response = yield authorizedInstance().post(`/api/v1/projects/${action.projectId}/tasks`, action.data)
     const data = yield normalize(response.data)
     yield put({ type: TYPES.CREATE_TASK + TYPES.SUCCESS, projectId: action.projectId, data })
   } catch (error) {

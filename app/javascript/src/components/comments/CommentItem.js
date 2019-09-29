@@ -12,7 +12,7 @@ const CommentItem = ({ comment, removeCommentHandler }) => (
         <span onClick={removeCommentHandler} ><Glyphicon glyph="trash" /></span>
       </div>
       <p className="mb-5">{comment.text}</p>
-      <a href={comment.attachment.url} target="_blank"><img src={comment.attachment.standard.url} /></a>
+      <a href={comment.attachment.url} target="_blank"><img src={comment.attachment} /></a>
     </div>
   </div>
 )

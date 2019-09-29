@@ -5,6 +5,7 @@ module Api
         type 'projects'
 
         belongs_to :user, serializer: Users::Representer::Authentication
+        has_many :tasks, serializer: Tasks::Representer::Base
 
         attributes :name
       end

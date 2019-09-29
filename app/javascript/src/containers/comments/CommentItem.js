@@ -6,6 +6,7 @@ import * as commentActions from '../../actions/actions'
 
 class CommentItem extends Component {
   handleDeleteComment = () => {
+    console.log(this.props)
     this.props.deleteComment(this.props.comment.id, this.props.comment.task_id)
   }
 

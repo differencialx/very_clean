@@ -6,9 +6,11 @@ module Api
           options[:renderer_options] = {
             class: {
               Project: Api::V1::Projects::Representer::Base,
-              User: Api::V1::Users::Representer::Authentication
+              Task: Api::V1::Tasks::Representer::Base,
+              User: Api::V1::Users::Representer::Authentication,
+              Comment: Api::V1::Comments::Representer::Base
             },
-            include: [:user]
+            include: [:user, { tasks: [:comments] }]
           }
         end
       end
