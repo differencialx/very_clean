@@ -34,7 +34,9 @@ gem 'rack-cors'
 gem 'pundit'
 gem 'acts_as_list'
 
-gem 'webpacker'
+gem 'webpacker', '~> 3.6'
+
+gem "image_processing", "~> 1.0"
 
 gem "aws-sdk-s3", require: false
 

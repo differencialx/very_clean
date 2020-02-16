@@ -10,11 +10,11 @@ module Api
 
       def default_handler
         {
-          destroyed: ->(result) { head :no_content },
+          destroyed: ->(_result) { head :no_content },
           created: ->(result) { render jsonapi: result[:model], **result[:renderer_options], status: :created },
           success: ->(result) { render jsonapi: result[:model], **result[:renderer_options], status: :ok },
-          forbidden: ->(result) { render json: { errors: [{ title: 'Forbidden', detail: 'Access Denied' }] }, status: :forbidden },
-          not_found: ->(result) { head :not_found },
+          forbidden: ->(_result) { render json: { errors: [{ title: 'Forbidden', detail: 'Access Denied' }] }, status: :forbidden },
+          not_found: ->(_result) { head :not_found },
           unauthorized: ->(result) { render json: json_api_errors(result['contract.default'].errors.messages), status: :unauthorized },
           invalid: ->(result) { render json: json_api_errors(result['contract.default'].errors.messages), status: :unprocessable_entity }
         }
@@ -41,7 +41,7 @@ module Api
       end
 
       def current_user
-        @current_user ||= User.find(payload["user_id"])
+        @current_user ||= User.find(payload['user_id'])
       end
     end
   end

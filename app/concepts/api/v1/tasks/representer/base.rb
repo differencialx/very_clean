@@ -5,8 +5,9 @@ module Api
         type 'tasks'
 
         belongs_to :project, serializer: Projects::Representer::Base
+        has_many :comments, serializer: Comments::Representer::Base
 
-        attributes :name, :deadline_at, :completed, :position
+        attributes :name, :deadline_at, :completed, :position, :project_id
       end
     end
   end

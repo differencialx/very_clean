@@ -9,7 +9,6 @@ module Api
         validation do
           required(:text).filled
           required(:task_id).filled
-          optional(:attachment).filled
         end
       end
     end

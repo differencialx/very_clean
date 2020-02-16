@@ -8,13 +8,17 @@ module Api
 
         belongs_to :task, serializer: Tasks::Representer::Base
 
-        attributes :text
+        attributes :text, :task_id
 
         attribute :attachment do
-          if Rails.env.development? || Rails.env.test?
-            rails_blob_path(@object.attachment, disposition: 'attachment', only_path: true)
+          if @object.attachment.attached?
+            # if Rails.env.development? || Rails.env.test?
+              rails_representation_url(@object.thumbnail, disposition: 'attachment', only_path: true)
+            # else
+              # @object.attachment.service_url
+            # end
           else
-            @object.attachment.service_url
+            ''
           end
         end
       end
