@@ -1,9 +1,9 @@
-FROM ruby:2.5.1-slim
+FROM ruby:2.6.3-slim
 
 USER root
 
 RUN apt-get update -qq && apt-get install -y \
-   build-essential libpq-dev libxml2-dev libxslt1-dev imagemagick apt-transport-https curl nano
+   build-essential libpq-dev libxml2-dev libxslt1-dev imagemagick apt-transport-https curl nano sudo libvips libvips-dev
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
  && apt-get install -y nodejs

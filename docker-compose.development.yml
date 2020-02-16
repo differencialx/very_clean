@@ -5,6 +5,7 @@ volumes:
   postgres:
   assets:
   gems:
+  node_modules:
 
 services:
   db:
@@ -21,7 +22,7 @@ services:
       test: ["CMD", "pg_isready", "-U", "postgres"]
 
   in_memory_store:
-    image: redis:3.2-alpine
+    image: redis:4.0-alpine
     expose:
       - 6379
     volumes:
@@ -31,16 +32,16 @@ services:
 
   server_app: &server_app
     build: .
-    command: bundle exec rails server
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
     entrypoint: "./docker-entrypoint.sh"
     volumes:
       - ./:/home/www/very_clean/
       - gems:/usr/local/bundle
+      - node_modules:/home/www/very_clean/node_modules
     tty: true
     stdin_open: true
     environment:
       RAILS_ENV: development
-      RAILS_MASTER_KEY: 00d729b4edfbb68fdc8975a3a5c7a109
       DB_HOST: db
       DB_PORT: 5432
       DB_NAME: very_clean_development
@@ -59,7 +60,7 @@ services:
 
   server_worker_app:
     <<: *server_app
-    command: bundle exec sidekiq -C config/sidekiq.yml
+    command: bundle exec sidekiq -C config/sidekiq.yml -p 3001
     entrypoint: ''
     depends_on:
       - db

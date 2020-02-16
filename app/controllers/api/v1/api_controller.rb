@@ -10,20 +10,25 @@ module Api
 
       def default_handler
         {
-          success: -> (result) { render jsonapi: result[:model], **result[:renderer_options], status: :created },
-          invalid: -> (result) { render json: json_api_errors(result['contract.default'].errors.messages), status: :unprocessable_entity },
-          unauthorized: ->(result) { render json: json_api_errors(result['contract.default'].errors.messages), status: :unauthorized }
+          destroyed: ->(_result) { head :no_content },
+          created: ->(result) { render jsonapi: result[:model], **result[:renderer_options], status: :created },
+          success: ->(result) { render jsonapi: result[:model], **result[:renderer_options], status: :ok },
+          forbidden: ->(_result) { render json: { errors: [{ title: 'Forbidden', detail: 'Access Denied' }] }, status: :forbidden },
+          not_found: ->(_result) { head :not_found },
+          unauthorized: ->(result) { render json: json_api_errors(result['contract.default'].errors.messages), status: :unauthorized },
+          invalid: ->(result) { render json: json_api_errors(result['contract.default'].errors.messages), status: :unprocessable_entity }
         }
       end
 
       def default_cases
         {
-          success:   -> (result) { result.success? },
+          destroyed: ->(result) { result.success? && result[:model].respond_to?(:destroyed?) && result[:model].destroyed? },
+          created: ->(result) { result.success? && result['model.action'] == :new },
+          success: ->(result) { result.success? },
+          forbidden: ->(result) { result.failure? && result['result.policy.default'] && result['result.policy.default'].failure? },
           unauthorized: ->(result) { result.failure? && result['contract.status'] == :unauthorized },
-          destroyed: -> (result) { result.success? && result["model.action"] == :destroy },
-          not_found: -> (result) { result.failure? && result["result.model"] && result["result.model"].failure? },
-          forbidden: -> (result) { result.failure? && result["result.policy.default"] && result["result.policy.default"].failure? },
-          invalid:   -> (result) { result.failure? }
+          not_found: ->(result) { result.failure? && result[:model].blank? },
+          invalid: ->(result) { result.failure? }
         }
       end
 
@@ -32,7 +37,11 @@ module Api
       end
 
       def not_authorized
-        render json: { error: "Not authorized" }, status: :unauthorized
+        render json: { errors: [{ title: 'Authorization', detail: 'Not authorized' }] }, status: :unauthorized
+      end
+
+      def current_user
+        @current_user ||= User.find(payload['user_id'])
       end
     end
   end
