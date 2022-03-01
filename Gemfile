@@ -36,7 +36,7 @@ gem 'acts_as_list'
 
 gem 'webpacker', '~> 3.6'
 
-gem "image_processing", "~> 1.0"
+gem "image_processing", "~> 1.12"
 
 gem "aws-sdk-s3", require: false
 
